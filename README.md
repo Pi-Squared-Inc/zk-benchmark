@@ -46,29 +46,79 @@ For the smallest file, hol_idi.mm, which consists of ... tokens, Nexus proving t
 
 ## Proof file size VS CPU proof time
 
+![MM-proof file size vs ZK-proof time](img/tokens_prover.svg "MM-proof file size vs ZK-proof time")
+
+## ZK Backends
+
+Measurements taken on a **AMD EPYC 9354 32-Core CPU (64 threads)**, with **4x NVIDIA GeForce RTX 4090 24GB GPU's** and **248GB RAM**.
+
+All times below are measured in seconds.
+
+## ZK Backends
+### Cairo
+| Benchmark                                                                         |   Input size |   Proving time |   Verification time |
+|:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
+| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |          0.913 |               0.029 |
+| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |          5.975 |               0.229 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |         25.623 |               0.993 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |        110.230 |               4.321 |
+| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |        228.487 |               9.102 |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |        nan     |             nan     |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        nan     |             nan     |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |        nan     |             nan     |
+
+### Jolt
+| Benchmark                                                                         |   Input size |   Proving time |   Verification time |
+|:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
+| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |          3.170 |               0.174 |
+| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |          5.350 |               0.156 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |         10.290 |               0.229 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |         28.530 |               0.194 |
+| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |         30.000 |               0.200 |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |         91.870 |               0.218 |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        nan     |             nan     |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |        nan     |             nan     |
+
+### RISC0 (GPU)
+| Benchmark                                                                         |   Input size |   Proving time |   Verification time |
+|:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
+| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |          0.443 |               0.016 |
+| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |          0.553 |               0.017 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |          0.769 |               0.018 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |          2.070 |               0.035 |
+| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |          2.090 |               0.035 |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |          3.950 |               0.053 |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |         15.990 |               0.225 |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |         63.740 |               0.885 |
+
+### RISC0 (CPU)
+| Benchmark                                                                         |   Input size |   Proving time |   Verification time |
+|:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
+| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |          3.140 |               0.016 |
+| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |          5.770 |               0.017 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |         11.220 |               0.018 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |         33.900 |               0.035 |
+| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |         33.480 |               0.035 |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |         66.280 |               0.053 |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        276.440 |               0.225 |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |       1635.040 |               2.070 |
+
+### SP1
+| Benchmark                                                                         |   Input size |   Proving time |   Verification time |
+|:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
+| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |          7.260 |               0.203 |
+| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |         12.220 |               0.199 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |         17.450 |               0.199 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |         34.860 |               0.208 |
+| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |         34.790 |               0.207 |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |         43.340 |               0.338 |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        133.150 |               0.731 |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |        456.790 |               2.490 |
+
+
 [Insert graph]
 
-## Proof file size VS GPU proof time
-
-[Insert graph]
-
-## Proof file size VS CPU verify time
-
-[Insert graph]
-
-## Proof file size VS GPU verify time
-
-[Insert graph]
-
-## Proof file size VS CPU total time
-
-[Insert graph]
-
-## Proof file size VS GPU total time
-
-[Insert graph]
-
-We selected nine representative files [how did we select them?] and choose to present their corresponding statistics.
+We selected eight representative files [how did we select them?] and choose to present their corresponding statistics.
 
 [insert table for each file]
 
