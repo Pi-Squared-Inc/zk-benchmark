@@ -99,7 +99,7 @@ poetry run check-proof all ../mm/common/metamath-files/benchmark_mm/small/hol/ho
 ```
 
 #### 3. Running a single zkVM
-The following syntax is also available, which will execute our checker only in the requested zkVM:
+By replacing the `all` keyword with the name of a zkVM, you can execute our checker only in the requested VM:
 ```bash
 poetry run check-proof <cairo | jolt | risc0 | sp1 | nexus | lurk> ...
 ```
