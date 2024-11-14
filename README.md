@@ -17,9 +17,11 @@ on different Metamath files in various zero-knowledge Virtual Machines (zkVMs).
   - [ZK Backends](#zk-backends)
     - [Cairo](#cairo)
     - [Jolt](#jolt)
+    - [Lurk](#lurk)
     - [RISC0 (GPU)](#risc0-gpu)
     - [RISC0 (CPU)](#risc0-cpu)
     - [SP1](#sp1)
+    - [zkWASM (GPU)](#zkwasm-gpu)
 - [Disclaimers](#disclaimers)
 - [One possible optimization](#one-possible-optimization)
 
@@ -117,9 +119,11 @@ For the smallest file, hol_idi.mm, which consists of ... tokens, Nexus proving t
 
 ## ZK Backends
 
+We selected eight representative files [how did we select them?] and choose to present their corresponding statistics.
+
 Measurements taken on a **AMD EPYC 9354 32-Core CPU (64 threads)**, with **4x NVIDIA GeForce RTX 4090 24GB GPU's** and **248GB RAM**.
 
-All times below are measured in seconds.
+All times below are measured in seconds. Where "**TO / OOM**" is indicated, it means the checker was either timed out (after 900 seconds), or it exceeded system memory limits.
 
 ### Cairo
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
@@ -129,9 +133,9 @@ All times below are measured in seconds.
 | [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |         25.623 |               0.993 |
 | [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |        110.230 |               4.321 |
 | [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |        228.487 |               9.102 |
-| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |        nan     |             nan     |
-| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        nan     |             nan     |
-| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |        nan     |             nan     |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |        **TO / OOM**     |             **TO / OOM**     |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        **TO / OOM**     |             **TO / OOM**     |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |        **TO / OOM**     |             **TO / OOM**     |
 
 ### Jolt
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
@@ -142,8 +146,20 @@ All times below are measured in seconds.
 | [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |         28.530 |               0.194 |
 | [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |         30.000 |               0.200 |
 | [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |         91.870 |               0.218 |
-| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        nan     |             nan     |
-| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |        nan     |             nan     |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        **TO / OOM**     |             **TO / OOM**     |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |        **TO / OOM**     |             **TO / OOM**     |
+
+### Lurk
+| Benchmark                           |   Input size |   Proving time |
+|:------------------------------------|-------------:|---------------:|
+| [hol_idi.mm](mm-files/hol_idi.mm)   |           39 |          0.924 |
+| [hol_wov.mm](mm-files/hol_wov.mm)   |          147 |          5.588 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm) |          508 |         18.167 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm) |         1786 |        195.757 |
+
+We have encountered out-of-memory issues with the next largest Metamath file in our benchmarking suite. However, memory consumption seems to not be monotonic in Metamath input size, as is the general trend with the other checkers. Thus, we do not include the other benchmarks in the table for Lurk.
+
+See [this thread](https://zulip.argument.xyz/#narrow/stream/17-lurk/topic/Lurks.20gets.20killed.20for.20memory.20exhaustion) on Argument Zulip for further discussion.
 
 ### RISC0 (GPU)
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
@@ -167,7 +183,7 @@ All times below are measured in seconds.
 | [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |         33.480 |               0.035 |
 | [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |         66.280 |               0.053 |
 | [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        276.440 |               0.225 |
-| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |       1635.040 |               2.070 |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |       **TO / OOM** |               **TO / OOM** |
 
 ### SP1
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
@@ -181,12 +197,17 @@ All times below are measured in seconds.
 | [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        133.150 |               0.731 |
 | [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |        456.790 |               2.490 |
 
-
-[Insert graph]
-
-We selected eight representative files [how did we select them?] and choose to present their corresponding statistics.
-
-[insert table for each file]
+### zkWASM (GPU)
+| Benchmark                                                                         |   Input size |   Proving time |   Verification time |
+|:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
+| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |         33.080 |               4.059 |
+| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |         33.020 |               4.045 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |         34.090 |               4.063 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |         76.550 |               4.092 |
+| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |         79.030 |               5.063 |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |        120.720 |               5.072 |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        351.660 |               8.034 |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |        **TO / OOM**     |             **TO / OOM**     |
 
 # Disclaimers
 We believe there are several reasons why our code may be improved.
