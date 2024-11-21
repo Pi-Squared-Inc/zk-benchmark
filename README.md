@@ -149,7 +149,7 @@ __Note__: Nexus is not pictured in the graph above because even on our smallest 
 
 ## ZK Backends
 
-We selected eight representative files [how did we select them?] and choose to present their corresponding statistics.
+We selected eight representative files and choose to present their corresponding statistics.
 
 Measurements taken on a **AMD EPYC 9354 32-Core CPU (64 threads)**, with **4x NVIDIA GeForce RTX 4090 24GB GPU's** and **248GB RAM**.
 
