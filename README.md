@@ -43,7 +43,8 @@ The implementations of our Metamath proof checker in each of the above zkVMs can
 
 ## GPU support
 
-Out zkVMs that we are considering only Risc0, zkWASM, SP1 and Cairo provide GPU support. Still, we were only able to run Risc0 and zkWASM with GPU support due to internal setup issues for SP1 and evelvind code base for Cairo.
+Out zkVMs that we are considering only Risc0, zkWASM, SP1 and Cairo provide GPU support. Still, we were only
+able to run Risc0, zkWASM, and SP1 with GPU support due to inter evolving code base for Cairo.
 
 ## Rust support
 
@@ -62,6 +63,7 @@ comparison betwen them and the the other 5 should be taken with a grain of salt.
 - Nexus: tag [v0.2.3](https://github.com/nexus-xyz/nexus-zkvm/releases/tag/v0.2.3)
 - Risc0: version 1.0.5
 - SP1: `dev` branch, commit [2c78683](https://github.com/succinctlabs/sp1/commit/2c7868364cb832531e8cafd258aa06fbab079459)
+- SP1 (GPU): `dev` branch, commit TODO
 - zkWASM: `main` branch, commit [f5acf8c](https://github.com/DelphinusLab/zkWasm/commit/f5acf8c58c32ac8c6426298be69958a6bea2b89a)
 
 ## Certificate sizes
@@ -232,6 +234,18 @@ See [this thread](https://zulip.argument.xyz/#narrow/stream/17-lurk/topic/Lurks.
 | [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |         43.340 |               0.338 |
 | [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        133.150 |               0.731 |
 | [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |        456.790 |               2.490 |
+
+### SP1 (GPU)
+| Benchmark                                                            |   Input size |   Proving time |   Verification time |
+|:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
+| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |           1.72 |               0.1995 |
+| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |           1.74 |               0.2031 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |           2.02 |               0.2014 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |           2.44 |               0.2012 |
+| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |           2.71 |               0.2056 |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |           4.48 |               0.2113 |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |           7.96 |               0.4675 |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          19.82 |               1.3000 |
 
 ### zkWASM (GPU)
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
