@@ -143,7 +143,7 @@ and count the number of resulting tokens as the `Input size` in the columns belo
 
 ## Proof file size VS CPU proof time
 
-![MM-proof file size vs ZK-proof time](img/tokens_prover.svg "MM-proof file size vs ZK-proof time")
+![MM-proof file size vs ZK-proof time](img/tokens_prover2.svg "MM-proof file size vs ZK-proof time")
 
 __Note__: Nexus is not pictured in the graph above because even on our smallest input execution was quite slow (512 seconds).
 
