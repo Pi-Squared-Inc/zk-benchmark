@@ -56,16 +56,16 @@ comparison betwen them and the the other 5 should be taken with a grain of salt.
 
 ## Versions of the zkVMs used
 
-- Cairo:  the Lambdaworks prover, main branch, commit [a591186](https://github.com/lambdaclass/lambdaworks/commit/a591186e6c4dd53301b03b4ddd69369abe99f960)
+- Cairo:  the Lambdaworks prover, main branch, commit [a591186](https://github.com/lambdaclass/lambdaworks/commit/a591186e6c4dd53301b03b4ddd69369abe99f960) (Sept 25, 2024)
   (the current version, while faster, does not yet support Cairo)
-- Jolt: `main` branch, commit [3b14242](https://github.com/a16z/jolt/commit/3b142426d9648299d9c6912e7e1b4698cf91491b)
-- Lurk: `main` branch, commit [57c48b9](https://github.com/argumentcomputer/lurk/commit/57c48b987a94ba1f9752408a0990882c9f4f506b)
-- Nexus: tag [v0.2.3](https://github.com/nexus-xyz/nexus-zkvm/releases/tag/v0.2.3)
-- Risc0 (CPU): version 1.0.5
-- Risc0 (GPU): `main` branch, commit [26f7ef09](https://github.com/risc0/risc0/commit/26f7ef09fa51fd2ca6b2af5529187c8fa1517f6e)
-- SP1 (CPU): `dev` branch, commit [2c78683](https://github.com/succinctlabs/sp1/commit/2c7868364cb832531e8cafd258aa06fbab079459)
-- SP1 (GPU): `dev` branch, commit [3917e90](https://github.com/succinctlabs/sp1/commit/3917e90c1a149f732e1d2d1f07f162e73265fad7)
-- zkWASM: `main` branch, commit [f5acf8c](https://github.com/DelphinusLab/zkWasm/commit/f5acf8c58c32ac8c6426298be69958a6bea2b89a)
+- Jolt: `main` branch, commit [3b14242](https://github.com/a16z/jolt/commit/3b142426d9648299d9c6912e7e1b4698cf91491b) (Nov 4, 2024)
+- Lurk: `main` branch, commit [57c48b9](https://github.com/argumentcomputer/lurk/commit/57c48b987a94ba1f9752408a0990882c9f4f506b) (Nov 5, 2024)
+- Nexus: tag [v0.2.3](https://github.com/nexus-xyz/nexus-zkvm/releases/tag/v0.2.3) (Aug 21, 2024)
+- Risc0 (CPU): version 1.0.5 (Jul 30, 2024)
+- Risc0 (GPU): `main` branch, commit [26f7ef09](https://github.com/risc0/risc0/commit/26f7ef09fa51fd2ca6b2af5529187c8fa1517f6e) (Jan 16, 2025)
+- SP1 (CPU): `dev` branch, commit [2c78683](https://github.com/succinctlabs/sp1/commit/2c7868364cb832531e8cafd258aa06fbab079459) (Nov 5, 2024)
+- SP1 (GPU): `dev` branch, commit [3917e90](https://github.com/succinctlabs/sp1/commit/3917e90c1a149f732e1d2d1f07f162e73265fad7) (Dec 3, 2024)
+- zkWASM: `main` branch, commit [f5acf8c](https://github.com/DelphinusLab/zkWasm/commit/f5acf8c58c32ac8c6426298be69958a6bea2b89a) (Oct 19, 2024)
 
 ## Certificate sizes
 
