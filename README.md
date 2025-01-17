@@ -61,9 +61,10 @@ comparison betwen them and the the other 5 should be taken with a grain of salt.
 - Jolt: `main` branch, commit [3b14242](https://github.com/a16z/jolt/commit/3b142426d9648299d9c6912e7e1b4698cf91491b)
 - Lurk: `main` branch, commit [57c48b9](https://github.com/argumentcomputer/lurk/commit/57c48b987a94ba1f9752408a0990882c9f4f506b)
 - Nexus: tag [v0.2.3](https://github.com/nexus-xyz/nexus-zkvm/releases/tag/v0.2.3)
-- Risc0: version 1.0.5
-- SP1: `dev` branch, commit [2c78683](https://github.com/succinctlabs/sp1/commit/2c7868364cb832531e8cafd258aa06fbab079459)
-- SP1 (GPU): `dev` branch, commit TODO
+- Risc0 (CPU): version 1.0.5
+- Risc0 (GPU): `main` branch, commit [26f7ef09](https://github.com/risc0/risc0/commit/26f7ef09fa51fd2ca6b2af5529187c8fa1517f6e)
+- SP1 (CPU): `dev` branch, commit [2c78683](https://github.com/succinctlabs/sp1/commit/2c7868364cb832531e8cafd258aa06fbab079459)
+- SP1 (GPU): `dev` branch, commit [3917e90](https://github.com/succinctlabs/sp1/commit/3917e90c1a149f732e1d2d1f07f162e73265fad7)
 - zkWASM: `main` branch, commit [f5acf8c](https://github.com/DelphinusLab/zkWasm/commit/f5acf8c58c32ac8c6426298be69958a6bea2b89a)
 
 ## Certificate sizes
@@ -202,14 +203,14 @@ See [this thread](https://zulip.argument.xyz/#narrow/stream/17-lurk/topic/Lurks.
 ### RISC0 (GPU)
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
 |:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
-| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |          0.443 |               0.016 |
-| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |          0.553 |               0.017 |
-| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |          0.769 |               0.018 |
-| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |          2.070 |               0.035 |
-| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |          2.090 |               0.035 |
-| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |          3.950 |               0.053 |
-| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |         15.990 |               0.225 |
-| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |         63.740 |               0.885 |
+| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |          0.4532|             0.01586 |
+| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |         0.4564 |             0.01584 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |         0.5693 |             0.01677 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |         0.8407 |             0.01771 |
+| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |         0.8165 |             0.01769 |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |           1.38 |             0.01883 |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |           9.13 |              0.1058 |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          31.18 |              0.3998 |
 
 ### RISC0 (CPU)
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
