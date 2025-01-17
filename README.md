@@ -145,6 +145,10 @@ and count the number of resulting tokens as the `Input size` in the columns belo
 
 ![MM-proof file size vs ZK-proof time](img/tokens_prover.svg "MM-proof file size vs ZK-proof time")
 
+In order to save time, for each zkVM we run only some of the 1225 files, which makes the lines from the above figure to be rather 
+approximations of the points corresponding to the measured files. This is the reason for which, for some particular files, one
+ particular zkVM could behave better than other one, even if the figure doesn't show this. For a more precise comparison, we encourage you to check our measurements [here](https://github.com/Pi-Squared-Inc/zk-benchmark/blob/main/data/zk_measurements.csv).
+
 __Note__: Nexus is not pictured in the graph above because even on our smallest input execution was quite slow (512 seconds).
 
 ## ZK Backends
@@ -256,3 +260,6 @@ as all zkVMs are Rust-based except for these zkVMs. But we did include the bench
 
 All the implementations could actually benefit from hand crafted optimizations, since the zkVM field is such an active research field.
 If you have any ideas for improvements or spot areas that could be optimized, don't hesitate to jump in. We welcome contributions!
+
+
+We would like to thank all the mentioned zkVM providers for having provided us feedback on these benchmarks and suggestions to improve our existing proof checking algorithm. We know that the field is continuously evolving and they are getting better and better with any release. We are happy to receive any further news on the improvements that they are going to make and to update our benchmarks accordingly.
