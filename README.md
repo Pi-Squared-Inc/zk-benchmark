@@ -200,19 +200,19 @@ We have encountered out-of-memory issues with the next largest Metamath file in 
 
 See [this thread](https://zulip.argument.xyz/#narrow/stream/17-lurk/topic/Lurks.20gets.20killed.20for.20memory.20exhaustion) on Argument Zulip for further discussion.
 
-### RISC0 (GPU)
+### RISC0 (GPU), Succinct proof mode
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
 |:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
-| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |          0.4532|             0.01586 |
-| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |         0.4564 |             0.01584 |
-| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |         0.5693 |             0.01677 |
-| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |         0.8407 |             0.01771 |
-| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |         0.8165 |             0.01769 |
-| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |           1.38 |             0.01883 |
-| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |           9.13 |              0.1058 |
-| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          31.18 |              0.3998 |
+| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |          0.9746|             0.01526 |
+| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |           1.01 |             0.01526 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |           1.09 |             0.01525 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |           1.37 |             0.01527 |
+| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |           1.36 |             0.01525 |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |           1.99 |             0.01526 |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |          13.53 |              0.1534 |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          52.44 |              0.1526 |
 
-### RISC0 (CPU)
+### RISC0 (CPU), Composite proof mode
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
 |:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
 | [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |          3.140 |               0.016 |
@@ -224,7 +224,7 @@ See [this thread](https://zulip.argument.xyz/#narrow/stream/17-lurk/topic/Lurks.
 | [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        276.440 |               0.225 |
 | [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |       **TO / OOM** |               **TO / OOM** |
 
-### SP1
+### SP1, Core proof mode
 | Benchmark                                                            |   Input size |   Proving time |   Verification time |
 |:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
 | [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |          7.260 |               0.203 |
@@ -236,17 +236,17 @@ See [this thread](https://zulip.argument.xyz/#narrow/stream/17-lurk/topic/Lurks.
 | [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        133.150 |               0.731 |
 | [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |        456.790 |               2.490 |
 
-### SP1 (GPU)
+### SP1 (GPU), Compact proof mode
 | Benchmark                                                            |   Input size |   Proving time |   Verification time |
 |:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
-| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |           1.72 |               0.1995 |
-| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |           1.74 |               0.2031 |
-| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |           2.02 |               0.2014 |
-| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |           2.44 |               0.2012 |
-| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |           2.71 |               0.2056 |
-| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |           4.48 |               0.2113 |
-| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |           7.96 |               0.4675 |
-| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          19.82 |               1.3000 |
+| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |           5.91 |               0.1003 |
+| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |           5.97 |               0.1002 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |           6.02 |               0.1003 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |           6.49 |               0.1006 |
+| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |           7.07 |               0.1011 |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |           8.57 |               0.1002 |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |          16.68 |               0.1003 |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          32.69 |               1.1002 |
 
 ### zkWASM (GPU)
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
