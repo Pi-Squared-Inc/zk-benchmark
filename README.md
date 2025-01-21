@@ -209,8 +209,8 @@ See [this thread](https://zulip.argument.xyz/#narrow/stream/17-lurk/topic/Lurks.
 | [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |           1.37 |             0.01527 |
 | [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |           1.36 |             0.01525 |
 | [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |           1.99 |             0.01526 |
-| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |          13.53 |              0.1534 |
-| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          52.44 |              0.1526 |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |          13.53 |             0.01534 |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          52.44 |             0.01526 |
 
 ### RISC0 (CPU), Composite proof mode
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
@@ -246,7 +246,7 @@ See [this thread](https://zulip.argument.xyz/#narrow/stream/17-lurk/topic/Lurks.
 | [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |           7.07 |               0.1011 |
 | [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |           8.57 |               0.1002 |
 | [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |          16.68 |               0.1003 |
-| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          32.69 |               1.1002 |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          32.69 |               0.1002 |
 
 ### zkWASM (GPU)
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
