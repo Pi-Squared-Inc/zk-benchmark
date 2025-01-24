@@ -57,7 +57,7 @@ comparison betwen them and the the other 5 should be taken with a grain of salt.
 ## Versions of the zkVMs used
 
 - Cairo:  the Lambdaworks platinum prover, main branch, commit [a591186](https://github.com/lambdaclass/lambdaworks/commit/a591186e6c4dd53301b03b4ddd69369abe99f960) (Sept 25, 2024)
-- Jolt: `main` branch, commit [3b14242](https://github.com/a16z/jolt/commit/3b142426d9648299d9c6912e7e1b4698cf91491b) (Nov 4, 2024)
+- Jolt: `main` branch, commit [556ae6a](https://github.com/a16z/jolt/commit/556ae6a3e293703b74ca329ca73e137f553447f6) (Jan 21, 2024)
 - Lurk: `main` branch, commit [57c48b9](https://github.com/argumentcomputer/lurk/commit/57c48b987a94ba1f9752408a0990882c9f4f506b) (Nov 5, 2024)
 - Nexus: tag [v0.2.3](https://github.com/nexus-xyz/nexus-zkvm/releases/tag/v0.2.3) (Aug 21, 2024)
 - Risc0 (CPU): version 1.0.5 (Jul 30, 2024)
@@ -181,12 +181,12 @@ we did not generate a table for Nexus.
 ### Jolt
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
 |:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
-| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |          3.170 |               0.174 |
-| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |          5.350 |               0.156 |
-| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |         10.290 |               0.229 |
-| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |         28.530 |               0.194 |
-| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |         30.000 |               0.200 |
-| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |         91.870 |               0.218 |
+| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |            2.04|             0.08246 |
+| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |           2.89 |             0.06515 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |           5.25 |             0.08273 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |          12.09 |             0.08691 |
+| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |          21.15 |              0.0848 |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |          65.51 |             0.09053 |
 | [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |        **TO / OOM**     |             **TO / OOM**     |
 | [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |        **TO / OOM**     |             **TO / OOM**     |
 
