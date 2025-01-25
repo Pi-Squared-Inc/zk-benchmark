@@ -63,7 +63,7 @@ comparison betwen them and the the other 5 should be taken with a grain of salt.
 - Risc0 (CPU): version 1.0.5 (Jul 30, 2024)
 - Risc0 (GPU): `main` branch, commit [26f7ef09](https://github.com/risc0/risc0/commit/26f7ef09fa51fd2ca6b2af5529187c8fa1517f6e), post 1.2.1 (Jan 16, 2025)
 - SP1 (CPU): `dev` branch, commit [2c78683](https://github.com/succinctlabs/sp1/commit/2c7868364cb832531e8cafd258aa06fbab079459) (Nov 5, 2024)
-- SP1 (GPU): `dev` branch, commit [3917e90](https://github.com/succinctlabs/sp1/commit/3917e90c1a149f732e1d2d1f07f162e73265fad7), pre 4.0.0 (Dec 3, 2024)
+- SP1 (GPU): `dev` branch, commit [dae15e9](https://github.com/succinctlabs/sp1/commit/dae15e9fe60d51a3a702361c74ca93f97fab2e16), 4.0.1 (Jan 17, 2025)
 - zkWASM: `main` branch, commit [f5acf8c](https://github.com/DelphinusLab/zkWasm/commit/f5acf8c58c32ac8c6426298be69958a6bea2b89a) (Oct 19, 2024)
 
 Note Jolt, Lurk, and Nexus are all pre-1.0 and under heavy development, and Cairo's upcoming [stwo-based](https://github.com/starkware-libs/stwo-cairo) prover
@@ -241,14 +241,14 @@ See [this thread](https://zulip.argument.xyz/#narrow/stream/17-lurk/topic/Lurks.
 ### SP1 (GPU), Compact proof mode
 | Benchmark                                                            |   Input size |   Proving time |   Verification time |
 |:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
-| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |           5.91 |               0.1003 |
-| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |           5.97 |               0.1002 |
-| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |           6.02 |               0.1003 |
-| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |           6.49 |               0.1006 |
-| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |           7.07 |               0.1011 |
-| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |           8.57 |               0.1002 |
-| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |          16.68 |               0.1003 |
-| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          32.69 |               0.1002 |
+| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |           6.20 |               0.1004 |
+| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |           5.91 |               0.1002 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |           6.12 |               0.1002 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |           6.68 |               0.1005 |
+| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |           6.80 |               0.1002 |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |           8.49 |               0.1004 |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |          15.94 |               0.1002 |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          33.15 |               0.1005 |
 
 ### zkWASM (GPU)
 | Benchmark                                                                         |   Input size |   Proving time |   Verification time |
