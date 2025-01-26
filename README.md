@@ -151,6 +151,10 @@ and count the number of resulting tokens as the `Input size` in the columns belo
 
 ![MM-proof file size vs ZK-proof time](img/tokens_prover2.svg "MM-proof file size vs ZK-proof time")
 
+In order to save time, for each zkVM we run only some of the 1225 files, which makes the lines from the above figure to be rather 
+approximations of the points corresponding to the measured files. This is the reason for which, for some particular files, one
+ particular zkVM could behave better than other one, even if the figure doesn't show this. For a more precise comparison, we encourage you to check our measurements [here](https://github.com/Pi-Squared-Inc/zk-benchmark/blob/main/data/zk_measurements.csv).
+
 __Note__: Nexus is not pictured in the graph above because even on our smallest input execution was quite slow (512 seconds).
 
 ![Fastest GPU Provers](img/tokens_prover_gpu_only.svg "MM-proof file size vs ZK-proof time")
@@ -287,5 +291,5 @@ If you have any ideas for improvements or spot areas that could be optimized, do
 
 # Acknowledgements
 
-We would like to thank all the mentioned zkVM providers for having provided us feedback on these benchmarks.
+We would like to thank all the mentioned zkVM providers for having provided us feedback on these benchmarks and assistance with their platforms.
 Thanks to Delphinius Labs for lending server time, Risc Zero for profiling and performance model advice, Delphinus Labs, Succinct and A16Z for suggestions on zkVM settings, Lurk Labs for Lurk programming advice, Starkware for Cairo programming advice and code contributions.
