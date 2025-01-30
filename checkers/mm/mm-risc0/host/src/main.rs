@@ -16,6 +16,11 @@ use std::time::Instant;
 #[command(about = "Generate a RiscZero ZK certificate for checking a MetaMath proof")]
 #[command(version, arg_required_else_help = true, long_about = None)]
 struct Args {
+    /// Segment limit
+    /// See https://docs.rs/risc0-zkvm/latest/risc0_zkvm/struct.ExecutorEnvBuilder.html#method.segment_limit_po2
+    #[arg(long)]
+    segment_limit_po2: Option<u32>,
+
     /// Path to the MetaMath file containing the proof to be verified
     file: String,
 
@@ -30,7 +35,7 @@ struct Args {
 }
 
 /// This function runs the proof creation and checking pipeline for a given metamath file.
-fn create_and_check_proof(filename: String, target_theorem: MainTheoremArgs, provable_to_axiom: ToAxiomArgs, split_tokens: SplitTokensArgs) {
+fn create_and_check_proof(segment_limit_po2: Option<u32>, filename: String, target_theorem: MainTheoremArgs, provable_to_axiom: ToAxiomArgs, split_tokens: SplitTokensArgs) {
     // An executor environment describes the configurations for the zkVM
     // including program inputs.
     // A default ExecutorEnv can be created like so:
@@ -63,22 +68,28 @@ fn create_and_check_proof(filename: String, target_theorem: MainTheoremArgs, pro
         assert_eq!(batches, 2);
         let tokens_len = tokens_lens[1];
         let tokens_ref = tokens_refs[1];
-        check_restored_session(session_file_name, target_theorem, tokens_len, tokens_ref, &ident_table);
+        check_restored_session(segment_limit_po2, session_file_name, target_theorem, tokens_len, tokens_ref, &ident_table);
     } else {
-        check_proof(max_subst_size.try_into().unwrap(), target_theorem, batches, tokens_lens, tokens_refs, split_tokens, ident_table);
+        check_proof(segment_limit_po2, max_subst_size.try_into().unwrap(), target_theorem, batches, tokens_lens, tokens_refs, split_tokens, ident_table);
     }
 }
 
-fn check_restored_session(session_file_name: &String, target_theorem: Option<TokenCode>, tokens_len: usize, tokens_ref: &[u16], ident_table: &SplitIdentTable) {
+fn check_restored_session(segment_limit_po2: Option<u32>, session_file_name: &String, target_theorem: Option<TokenCode>, tokens_len: usize, tokens_ref: &[u16], ident_table: &SplitIdentTable) {
     println!("Restoring session from {}", session_file_name);
     let serialized_image_id = fs::read(session_file_name.to_owned() + ".id").unwrap();
     let image_id = Digest::from_bytes(serialized_image_id.try_into().unwrap());
     let serialized_image = fs::read(session_file_name).unwrap();
     let image = bincode::deserialize(serialized_image.as_slice()).unwrap();
-    let env = ExecutorEnv::builder()
-        .write(&tokens_len).unwrap()
-        .write_slice(&tokens_ref)
-        .build().unwrap();
+    let env = {
+        let mut env_builder = ExecutorEnv::builder();
+        if let Some(po2) = segment_limit_po2 {
+            env_builder.segment_limit_po2(po2);
+        }
+        env_builder
+            .write(&tokens_len).unwrap()
+            .write_slice(&tokens_ref)
+            .build().unwrap()
+    };
     let mut exec = ExecutorImpl::new(env, image).unwrap();
     let now = Instant::now();
     let session = exec.run().unwrap();
@@ -102,7 +113,7 @@ fn check_restored_session(session_file_name: &String, target_theorem: Option<Tok
     receipt.verify(image_id).unwrap();
 }
 
-fn check_proof(max_subst_size: usize, target_theorem: Option<Label>, batches: usize, tokens_lens: Vec<usize>, tokens_refs: Vec<&[TokenCode]>, split_tokens: SplitTokensArgs, ident_table: SplitIdentTable) {
+fn check_proof(segment_limit_po2: Option<u32>, max_subst_size: usize, target_theorem: Option<Label>, batches: usize, tokens_lens: Vec<usize>, tokens_refs: Vec<&[TokenCode]>, split_tokens: SplitTokensArgs, ident_table: SplitIdentTable) {
     println!("Creating environment");
 
     // An executor environment describes the configurations for the zkVM
@@ -116,6 +127,9 @@ fn check_proof(max_subst_size: usize, target_theorem: Option<Label>, batches: us
     // We call this twice, once for the target theorem and once for the axiom file.
     let setup_timer = SetupTimer::start();
     let mut env = ExecutorEnv::builder();
+    if let Some(po2) = segment_limit_po2 {
+        env.segment_limit_po2(po2);
+    }
     env.write(&max_subst_size).unwrap();
     env.write(&target_theorem).unwrap();
     env.write(&batches).unwrap();
@@ -207,7 +221,7 @@ fn main() {
     let args = Args::parse();
 
     let total_timer = TotalTimer::start();
-    create_and_check_proof(args.file, args.main_theorem_args, args.to_axiom_args, args.split_tokens_args);
+    create_and_check_proof(args.segment_limit_po2, args.file, args.main_theorem_args, args.to_axiom_args, args.split_tokens_args);
     println!("{}", total_timer.stop());
 }
 
@@ -241,18 +255,18 @@ mod tests {
     // We should consider deduplicating, or directly testing the generation files
 
     fn test_driver(filename: &str) {
-        create_and_check_proof(format!("{}/{}", MM_PATH, filename), MainTheoremArgs::default(), ToAxiomArgs::default(), SplitTokensArgs::default());
+        create_and_check_proof(None, format!("{}/{}", MM_PATH, filename), MainTheoremArgs::default(), ToAxiomArgs::default(), SplitTokensArgs::default());
     }
 
 
     #[test]
     fn test_disjointness_alt_lemma_works() {
-        create_and_check_proof(format!("{}/theory/disjointness-alt-lemma.mm", MM_PATH), MainTheoremArgs::from_main_theorem("disjointness-alt-lemma"), ToAxiomArgs::default(), SplitTokensArgs::default());
+        create_and_check_proof(None, format!("{}/theory/disjointness-alt-lemma.mm", MM_PATH), MainTheoremArgs::from_main_theorem("disjointness-alt-lemma"), ToAxiomArgs::default(), SplitTokensArgs::default());
     }
 
     #[test]
     fn test_impreflex_infer_main_theorem() {
-        create_and_check_proof(format!("{}/theory/impreflex-compressed-goal.mm", MM_PATH), MainTheoremArgs::infer_main_theorem(), ToAxiomArgs::default(), SplitTokensArgs::default());
+        create_and_check_proof(None, format!("{}/theory/impreflex-compressed-goal.mm", MM_PATH), MainTheoremArgs::infer_main_theorem(), ToAxiomArgs::default(), SplitTokensArgs::default());
     }
 
     #[test]
