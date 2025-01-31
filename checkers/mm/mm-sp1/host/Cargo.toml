@@ -4,7 +4,7 @@ name = "mm-sp1"
 edition = "2021"
 
 [dependencies]
-sp1-sdk = { version = "3.0.0-rc4", features = ["cuda"] }
+sp1-sdk = { version = "4.0.1", features = ["cuda"] }
 serde_json = { version = "1.0", default-features = false, features = ["alloc"] }
 serde = { version = "1.0.200", default-features = false, features = ["derive"] }
 clap = { version = "4.0", features = ["derive", "env"] }
@@ -14,4 +14,4 @@ mmlib-host = { path = "../../common/mmlib-host" }
 
 
 [build-dependencies]
-sp1-helper = "3.0.0-rc4"
+sp1-helper = "4.0.1"
