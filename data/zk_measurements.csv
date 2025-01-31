@@ -6007,6 +6007,11 @@
 7113,2025-01-30 14:59:32,sp1-gpu-core,imp/mm-proofs/erc20transfer_success_resugared_32_slices/20.erc20transfer_success_total/20.erc20transfer_success_tm_0_3.mm,,,10.84,0.49,0.00261,1.05,0.1891,13.40,26094
 7114,2025-01-30 14:59:32,sp1-gpu-core,imp/mm-proofs/erc20transfer_success_regular_32_slices/3.erc20transfer_success_total/3.erc20transfer_success_tm_0_7.mm,,,10.80,0.5146,0.0027,1.50,0.422,14.23,26526
 7115,2025-01-30 14:59:32,sp1-gpu-core,imp/mm-proofs/erc20transfer_success_regular_32_slices/3.erc20transfer_success_total/3.erc20transfer_success_tm_0_6.mm,,,10.81,0.5051,0.00273,1.57,0.4171,14.17,26552
+7116,2025-01-30 14:59:32,sp1-gpu-core,imp/mm-proofs/erc20transfer_success_regular_32_slices/26.erc20transfer_success_total/26.erc20transfer_success_tm_0_5.mm,,,,,,,,,26604
+7117,2025-01-30 14:59:32,sp1-gpu-core,imp/mm-proofs/erc20transfer_success_regular_32_slices/29.erc20transfer_success_total/29.erc20transfer_success_tm_0_8.mm,,,,,,,,,26604
+7118,2025-01-30 14:59:32,sp1-gpu-core,imp/mm-proofs/erc20transfer_success_regular_32_slices/28.erc20transfer_success_total/28.erc20transfer_success_tm_0_5.mm,,,,,,,,,26604
+7119,2025-01-30 14:59:32,sp1-gpu-core,imp/mm-proofs/erc20transfer_success_regular_32_slices/31.erc20transfer_success_total/31.erc20transfer_success_tm_0_5.mm,,,,,,,,,26604
+7120,2025-01-30 14:59:32,sp1-gpu-core,imp/mm-proofs/erc20transfer_success_regular_32_slices/32.erc20transfer_success_total/32.erc20transfer_success_tm_0_2.mm,,,,,,,,,26604
 7116,2025-01-30 14:59:32,sp1-gpu-core,imp/mm-proofs/erc20transfer_success_resugared_32_slices/28.erc20transfer_success_total/28.erc20transfer_success_tm_0_11.mm,,,10.85,0.5007,0.00279,1.00,0.1913,13.55,26621
 7117,2025-01-30 14:59:32,sp1-gpu-core,imp/mm-proofs/erc20transfer_success_resugared_32_slices/31.erc20transfer_success_total/31.erc20transfer_success_tm_0_11.mm,,,10.88,0.5313,0.00268,1.01,0.1915,13.46,26621
 7118,2025-01-30 14:59:32,sp1-gpu-core,imp/mm-proofs/erc20transfer_success_regular_32_slices/14.erc20transfer_success_total/14.erc20transfer_success_tm_0_8.mm,,,10.75,0.4882,0.00258,1.55,0.4158,14.03,26649
@@ -7227,6 +7232,11 @@
 7113,2025-01-30 09:52:42,sp1-gpu-compressed,imp/mm-proofs/erc20transfer_success_resugared_32_slices/20.erc20transfer_success_total/20.erc20transfer_success_tm_0_3.mm,,,10.79,0.4912,0.00271,1.23,0.09112,13.36,26094
 7114,2025-01-30 09:52:42,sp1-gpu-compressed,imp/mm-proofs/erc20transfer_success_regular_32_slices/3.erc20transfer_success_total/3.erc20transfer_success_tm_0_7.mm,,,10.91,0.5113,0.00261,2.70,0.09267,15.19,26526
 7115,2025-01-30 09:52:42,sp1-gpu-compressed,imp/mm-proofs/erc20transfer_success_regular_32_slices/3.erc20transfer_success_total/3.erc20transfer_success_tm_0_6.mm,,,10.89,0.4825,0.00279,2.59,0.09099,14.82,26552
+7116,2025-01-30 09:52:42,sp1-gpu-compressed,imp/mm-proofs/erc20transfer_success_regular_32_slices/26.erc20transfer_success_total/26.erc20transfer_success_tm_0_5.mm,,,,,,,,,26604
+7117,2025-01-30 09:52:42,sp1-gpu-compressed,imp/mm-proofs/erc20transfer_success_regular_32_slices/29.erc20transfer_success_total/29.erc20transfer_success_tm_0_8.mm,,,,,,,,,26604
+7118,2025-01-30 09:52:42,sp1-gpu-compressed,imp/mm-proofs/erc20transfer_success_regular_32_slices/28.erc20transfer_success_total/28.erc20transfer_success_tm_0_5.mm,,,,,,,,,26604
+7119,2025-01-30 09:52:42,sp1-gpu-compressed,imp/mm-proofs/erc20transfer_success_regular_32_slices/31.erc20transfer_success_total/31.erc20transfer_success_tm_0_5.mm,,,,,,,,,26604
+7120,2025-01-30 09:52:42,sp1-gpu-compressed,imp/mm-proofs/erc20transfer_success_regular_32_slices/32.erc20transfer_success_total/32.erc20transfer_success_tm_0_2.mm,,,,,,,,,26604
 7116,2025-01-30 09:52:42,sp1-gpu-compressed,imp/mm-proofs/erc20transfer_success_resugared_32_slices/28.erc20transfer_success_total/28.erc20transfer_success_tm_0_11.mm,,,10.76,0.4564,0.00284,1.27,0.09334,13.40,26621
 7117,2025-01-30 09:52:42,sp1-gpu-compressed,imp/mm-proofs/erc20transfer_success_resugared_32_slices/31.erc20transfer_success_total/31.erc20transfer_success_tm_0_11.mm,,,10.81,0.5803,0.00269,1.24,0.09066,13.57,26621
 7118,2025-01-30 09:52:42,sp1-gpu-compressed,imp/mm-proofs/erc20transfer_success_regular_32_slices/14.erc20transfer_success_total/14.erc20transfer_success_tm_0_8.mm,,,10.79,0.4795,0.00265,2.62,0.09077,14.85,26649
