@@ -239,14 +239,14 @@ Composite proof mode
 Compact proof mode
 | Benchmark                                                            |   Input size |   Proving time |   Verification time |
 |:----------------------------------------------------------------------------------|-------------:|---------------:|--------------------:|
-| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |           6.20 |               0.1004 |
-| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |           5.91 |               0.1002 |
-| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |           6.12 |               0.1002 |
-| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |           6.68 |               0.1005 |
-| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |           6.80 |               0.1002 |
-| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |           8.49 |               0.1004 |
-| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |          15.94 |               0.1002 |
-| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          33.15 |               0.1005 |
+| [hol_idi.mm](mm-files/hol_idi.mm)                                                 |           39 |         0.6914 |             0.09137 |
+| [hol_wov.mm](mm-files/hol_wov.mm)                                                 |          147 |         0.7096 |             0.09151 |
+| [hol_ax13.mm](mm-files/hol_ax13.mm)                                               |          508 |         0.6942 |             0.09091 |
+| [hol_cbvf.mm](mm-files/hol_cbvf.mm)                                               |         1786 |         0.7601 |             0.09168 |
+| [45.erc20transfer_success_tm_0_6.mm](mm-files/45.erc20transfer_success_tm_0_6.mm) |         6249 |         0.7447 |             0.09047 |
+| [25.erc20transfer_success_tm_0_9.mm](mm-files/25.erc20transfer_success_tm_0_9.mm) |        21332 |           1.19 |             0.09091 |
+| [3.erc20transfer_success_tm_0.mm](mm-files/3.erc20transfer_success_tm_0.mm)       |        73862 |           3.47 |             0.09065 |
+| [9.erc20transfer_success.mm](mm-files/9.erc20transfer_success.mm)                 |       258135 |          10.15 |              0.0907 |
 
 ### SP1 (CPU)
 Core proof mode
