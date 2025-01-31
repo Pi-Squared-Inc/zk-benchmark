@@ -99,6 +99,7 @@ fn prove_pgm(client: ProverClient, stdin: SP1Stdin) {
     let prove_timer = ProveTimer::start();
     let proof = client
         .prove(&pk, stdin)
+        .compressed()
         .run()
         .expect("failed to generate proof");
     println!("Successfully generated proof!");

@@ -310,10 +310,10 @@ impl FrameStackImpl of FrameStackTrait {
 
         let mut unboxed_val = _frame.deref();
 
-        if unboxed_val.c.contains(token) {
+        if unboxed_val.c.contains(@token) {
             panic!("Const {:?} already defined", token.val);
         }
-        if unboxed_val.v.contains(token) {
+        if unboxed_val.v.contains(@token) {
             panic!("Const {:?} already defined as var in scope", token.val);
         }
         unboxed_val.c.append(token);
@@ -326,10 +326,10 @@ impl FrameStackImpl of FrameStackTrait {
 
         let mut unboxed_val = _frame.deref();
 
-        if unboxed_val.v.contains(token) {
+        if unboxed_val.v.contains(@token) {
             panic!("Variable {:?} already defined", token.val);
         }
-        if unboxed_val.c.contains(token) {
+        if unboxed_val.c.contains(@token) {
             panic!("Variable {:?} already defined as const in scope", token.val);
         }
         unboxed_val.v.append(token);
@@ -338,10 +338,10 @@ impl FrameStackImpl of FrameStackTrait {
     }
 
     fn add_f(ref self: FrameStack, var: Symbol, kind: Symbol, label: Label) {
-        if !self.lookup_v(@var) {
+        if !self.lookup_v(var) {
             panic!("var not defined");
         }
-        if !self.lookup_c(@kind) {
+        if !self.lookup_c(kind) {
             panic!("const not defined");
         }
 
@@ -373,54 +373,46 @@ impl FrameStackImpl of FrameStackTrait {
         let (entry, mut _frame) = self.entries.entry(self.len.into() - 1);
         let mut frame = _frame.deref();
 
-        let mut i = 0;
         let len = stat.len();
-        while i < len {
-            let mut j = 0;
-            while j < len {
-                let x = stat.at(i).clone();
-                let y = stat.at(j).clone();
-                if stat.at(i) != stat.at(j) {
+        for i in 0..len {
+            for j in 0..len {
+                let x = *stat.at(i);
+                let y = *stat.at(j);
+                if x != y {
                     frame.d.append((SymbolTrait::min(x, y), SymbolTrait::max(x, y)))
                 };
-                j += 1;
-            };
-            i += 1;
+            }
         };
 
         self.entries = entry.finalize(NullableTrait::new(frame));
     }
 
-    fn lookup_c(ref self: FrameStack, token: @Symbol) -> bool {
-        let mut i: usize = 0;
+    fn lookup_c(ref self: FrameStack, token: Symbol) -> bool {
         let mut found: bool = false;
-        while i < self.len {
+        for i in 0..self.len {
             let (entry, frame) = self.entries.entry(i.into());
             let mut unboxed_val = frame.deref();
-            if unboxed_val.c.contains(token.deref()) {
+            if unboxed_val.c.contains(@token) {
                 found = true;
                 self.entries = entry.finalize(NullableTrait::new(unboxed_val));
                 break;
             }
             self.entries = entry.finalize(NullableTrait::new(unboxed_val));
-            i += 1;
         };
         found
     }
 
-    fn lookup_v(ref self: FrameStack, token: @Symbol) -> bool {
-        let mut i: usize = 0;
+    fn lookup_v(ref self: FrameStack, token: Symbol) -> bool {
         let mut found: bool = false;
-        while i < self.len {
+        for i in 0..self.len {
             let (entry, frame) = self.entries.entry(i.into());
             let mut unboxed_val = frame.deref();
-            if unboxed_val.v.contains(token.deref()) {
+            if unboxed_val.v.contains(@token) {
                 found = true;
                 self.entries = entry.finalize(NullableTrait::new(unboxed_val));
                 break;
             }
             self.entries = entry.finalize(NullableTrait::new(unboxed_val));
-            i += 1;
         };
         found
     }
@@ -481,38 +473,32 @@ impl FrameStackImpl of FrameStackTrait {
         } else {
             (*x, *y)
         };
-        let mut i: usize = 0;
         let mut found: bool = false;
-        while i < self.len {
+        for i in 0..self.len {
             let (entry, frame) = self.entries.entry(i.into());
             let mut frame = frame.deref();
-            if frame.d.contains(pair) {
+            if frame.d.contains(@pair) {
                 found = true;
                 self.entries = entry.finalize(NullableTrait::new(frame));
                 break;
             }
             self.entries = entry.finalize(NullableTrait::new(frame));
-            i += 1;
         };
         found
     }
 
     fn collect_vars(ref self: FrameStack) -> Array<Symbol> {
         let mut vars: Array<Symbol> = Default::default();
-        let mut i: usize = 0;
-        while i < self.len {
+        for i in 0..self.len {
             let (entry, _frame) = self.entries.entry(i.into());
             let frame = _frame.deref();
 
             let mut frame_vars = frame.v.clone();
-            let mut j: usize = 0;
             let len = frame_vars.len();
-            while j < len {
+            for j in 0..len {
                 vars.append(frame_vars.at(j).clone());
-                j += 1;
             };
             self.entries = entry.finalize(NullableTrait::new(frame));
-            i += 1;
         };
         //TODO dedup only works with sorted arrays
         vars = vars.unique();
@@ -521,20 +507,16 @@ impl FrameStackImpl of FrameStackTrait {
 
     fn collect_dvs(ref self: FrameStack) -> Array<(Symbol, Symbol)> {
         let mut dvs: Array<(Symbol, Symbol)> = Default::default();
-        let mut i: usize = 0;
-        while i < self.len {
+        for i in 0..self.len {
             let (entry, _frame) = self.entries.entry(i.into());
             let frame = _frame.deref();
 
             let mut frame_dvs = frame.d.clone();
-            let mut j: usize = 0;
             let len = frame_dvs.len();
-            while j < len {
+            for j in 0..len {
                 dvs.append(frame_dvs.at(j).clone());
-                j += 1;
             };
             self.entries = entry.finalize(NullableTrait::new(frame));
-            i += 1;
         };
         //TODO dedup only works with sorted arrays
         dvs = dvs.unique();
@@ -550,11 +532,9 @@ impl FrameStackImpl of FrameStackTrait {
 
             let mut frame_fs = frame.f.clone();
 
-            let mut j: usize = 0;
             let len = frame_fs.len();
-            while j < len {
+            for j in 0..len {
                 fs.append(frame_fs.at(j).clone());
-                j += 1;
             };
             self.entries = entry.finalize(NullableTrait::new(frame));
             if i == 0 {
@@ -583,13 +563,10 @@ impl FrameStackImpl of FrameStackTrait {
         let mut mand_vars: Array<Symbol> = Default::default();
         for stmt in e_hyps
             .span() {
-                let mut i = 0;
-                let len = stmt.len();
-                while i < len {
-                    if vars.contains(stmt.at(i).clone()) {
-                        mand_vars.append(stmt.at(i).clone());
+                for token in stmt.span() {
+                    if vars.contains(token) {
+                        mand_vars.append(*token);
                     }
-                    i += 1;
                 };
             };
         for symb in stat.span() {
@@ -602,17 +579,15 @@ impl FrameStackImpl of FrameStackTrait {
 
         for x in mand_vars
             .span() {
-                let mut i = 0;
                 let len = mand_vars.len();
-                while i < len {
+                for i in 0..len {
                     cartesian.append((x.clone(), mand_vars.at(i).clone()));
-                    i += 1;
                 };
             };
 
         let mut mand_dvs: Array<(Symbol, Symbol)> = Default::default();
         for dv in dvs {
-            if cartesian.contains(dv) {
+            if cartesian.contains(@dv) {
                 mand_dvs.append(dv);
             }
         };
@@ -624,7 +599,7 @@ impl FrameStackImpl of FrameStackTrait {
         for (
             v, k
         ) in f_hyps {
-            if mand_vars.contains(v) && !mand_vars_done.contains(v) {
+            if mand_vars.contains(@v) && !mand_vars_done.contains(@v) {
                 mand_f_hyps.append((k, v));
                 mand_vars_done.append(v);
             }
@@ -766,8 +741,9 @@ impl MMImpl of MMTrait {
             k, v
         ) in mand_var {
             let entry: Statement = stack.get_clone(sp.into());
+            let mut entry_rhs = entry.span();
 
-            if *entry[0] != k {
+            if *entry_rhs.pop_front().unwrap() != k {
                 panic!(
                     "stack entry doesn't match mandatory var hypothesis, found {:?} and {:?}",
                     entry[0].val,
@@ -775,14 +751,7 @@ impl MMImpl of MMTrait {
                 )
             }
 
-            let mut entry_rhs: Statement = array![];
-            let mut j: usize = 1;
-            while j < entry.len() {
-                entry_rhs.append(*(entry.at(j)));
-                j += 1;
-            };
-
-            subst.insert(v.val.into(), entry_rhs);
+            subst.insert(v.val.into(), entry_rhs.into());
             sp += 1;
         };
 
@@ -793,19 +762,17 @@ impl MMImpl of MMTrait {
             let x_vars = self.find_vars(subst.get_clone(x.val.into()).unwrap());
             let y_vars = self.find_vars(subst.get_clone(y.val.into()).unwrap());
 
-            let mut i: usize = 0;
-            while i < x_vars.len() {
-                let mut j: usize = 0;
-                while j < y_vars.len() {
+            let x_vars_len: usize = x_vars.len();
+            for i in 0..x_vars_len {
+                let y_vars_len: usize = y_vars.len();
+                for j in 0..y_vars_len {
                     let x = x_vars[i];
                     let y = y_vars[j];
 
                     if x == y || !self.fs.lookup_d(x, y) {
                         panic!("Disjoint violation");
                     }
-                    j += 1;
                 };
-                i += 1;
             }
         };
 
@@ -819,10 +786,8 @@ impl MMImpl of MMTrait {
             sp += 1;
         };
 
-        let mut i = 0;
-        while i < npop {
+        for _ in 0..npop {
             stack.pop();
-            i += 1;
         };
 
         let substituted = self.apply_subst(result, ref subst);
@@ -852,8 +817,8 @@ impl MMImpl of MMTrait {
         let mut j: usize = 0;
         let mut diff = false;
 
-        while i < stat.len() {
-            let stmt_tok = stat.at(i);
+        let mut stat_span = stat.span();
+        while let Option::Some(stmt_tok) = stat_span.pop_front() {
             i += 1;
             if let Option::Some(replacement) = subst.get_clone((*stmt_tok.val).into()) {
                 let mut k = 0;
@@ -901,7 +866,7 @@ impl MMImpl of MMTrait {
     fn find_vars(ref self: MM, stat: Statement) -> Array<Symbol> {
         let mut vars: Array<Symbol> = array![];
         for x in stat {
-            if !vars.contains(x) && self.fs.lookup_v(@x) {
+            if !vars.contains(@x) && self.fs.lookup_v(x) {
                 vars.append(x);
             }
         };
@@ -933,7 +898,7 @@ impl MMImpl of MMTrait {
         let label_end = labels.len();
         let mut proof_indices: Array<Option<usize>> = Default::default();
         let mut i: usize = ep + 1;
-        while i < proof.len() {
+        while i != proof.len() {
             let c = *proof[i];
             if c == codes::COPY {
                 proof_indices.append(Option::None);

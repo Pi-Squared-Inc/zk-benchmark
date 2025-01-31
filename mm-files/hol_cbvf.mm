@@ -181,9 +181,9 @@ ${
   clf $a |- T. |= [ ( \ x : al . A C ) = B ] $.
 $}
 ${
-  $d f x F $.
-  $d f x al $.
-  $d f x be $.
+  $d x F $.
+  $d x al $.
+  $d x be $.
   eta.0 $e |- F : ( al -> be ) $.
   eta $a |- T. |= [ \ x : al . ( F x : al ) = F ] $.
 $}

@@ -4,7 +4,7 @@ name = "mm-sp1"
 edition = "2021"
 
 [dependencies]
-sp1-sdk = "3.0.0-rc4"
+sp1-sdk = { version = "3.0.0-rc4", features = ["cuda"] }
 serde_json = { version = "1.0", default-features = false, features = ["alloc"] }
 serde = { version = "1.0.200", default-features = false, features = ["derive"] }
 clap = { version = "4.0", features = ["derive", "env"] }
