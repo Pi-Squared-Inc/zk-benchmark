@@ -159,5 +159,7 @@ run_risc0() {
     #   XXX dup from test_rust; we should abstract this somehow
     local ncg="${nocertgen:+RISC0_DEV_MODE=1}"
 
+    # TODO: pass --segment-limit-po2 21 if running on 4090
+
     $dry env $ncg "$BUILD/$ver/$command" "$@" || fail
 }

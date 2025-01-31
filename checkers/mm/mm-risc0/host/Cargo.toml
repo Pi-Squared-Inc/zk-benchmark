@@ -9,7 +9,7 @@ path = "src/main.rs"
 
 [dependencies]
 methods = { path = "../methods" }
-risc0-zkvm = { version = "=1.0.5", default-features = false, features = ["prove"]}
+risc0-zkvm = { version = "=1.2.2", default-features = false, features = ["prove"]}
 bincode = "1.3"
 mmtokens = { path = "../../common/mmtokens" }
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
