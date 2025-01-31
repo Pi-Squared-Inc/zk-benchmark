@@ -141,6 +141,13 @@ By replacing the `all` keyword with the name of a zkVM, you can execute our chec
 ```bash
 poetry run check-proof <cairo | jolt | risc0 | sp1 | nexus | lurk | wasm> ...
 ```
+#### How to update zkVMs in Docker container
+
+The Docker image may be out of date with the versions of the zkVMs as they are set up in this repository and
+from which the current data is derived. To update these, image, clone this repository and `docker cp` the
+`checkers/common` and `checkers/mm` to the docker container, replacing the `/workspace/pi2/checker/common` and
+`/workspace/pi2/checker/mm` directories. Individual checkers can then be rebuilt using
+`/workspace/pi2/checker/mm/mm-*/checker -r build` before re-running the benchmarking script.
 
 # Our results
 
