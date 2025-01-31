@@ -10,7 +10,7 @@
 //! RUST_LOG=info cargo run --release -- --prove
 //! ```
 
-use sp1_sdk::{ProverClient, SP1Stdin};
+use sp1_sdk::{ProverClient, EnvProver, SP1Stdin, include_elf};
 
 use mmlib_host::{LoadGuestTimer, PreprocessingTimer, ProveTimer, SetupTimer, Timer, TotalTimer, VerifyTimer};
 use mmlib_host::{compute_hints, prepare_mm_file, MainTheoremArgs};
@@ -18,7 +18,7 @@ use mmlib_host::{compute_hints, prepare_mm_file, MainTheoremArgs};
 use clap::Parser;
 
 /// The ELF (executable and linkable format) file for the Succinct RISC-V zkVM.
-pub const GUEST_ELF: &[u8] = include_bytes!("../../../../../.build/elf/riscv32im-succinct-zkvm-elf");
+pub const GUEST_ELF: &[u8] = include_elf!("mm-sp1-guest");
 
 /// The arguments for the command.
 #[derive(Parser)]
@@ -73,12 +73,12 @@ fn preprocess_file(file: &str, main_theorem: MainTheoremArgs) -> (mmlib_host::Sp
     (ident_table, tokens, max_subst_size, target_theorem)
 }
 
-fn setup(max_subst_size: u32, target_theorem: Option<u16>, tokens: Vec<u16>) -> (ProverClient, SP1Stdin) {
+fn setup(max_subst_size: u32, target_theorem: Option<u16>, tokens: Vec<u16>) -> (EnvProver, SP1Stdin) {
     // Setup the logger.
     sp1_sdk::utils::setup_logger();
 
     // Setup the prover client.
-    let client = ProverClient::new();
+    let client = ProverClient::from_env();
 
     // Setup the inputs.
     let mut stdin = SP1Stdin::new();
@@ -89,7 +89,7 @@ fn setup(max_subst_size: u32, target_theorem: Option<u16>, tokens: Vec<u16>) -> 
     (client, stdin)
 }
 
-fn prove_pgm(client: ProverClient, stdin: SP1Stdin) {
+fn prove_pgm(client: EnvProver, stdin: SP1Stdin) {
     println!("Setup the program for proving.");
     let load_guest_timer = LoadGuestTimer::start();
     let (pk, vk) = client.setup(GUEST_ELF);
@@ -98,7 +98,7 @@ fn prove_pgm(client: ProverClient, stdin: SP1Stdin) {
     println!("Generate the proof");
     let prove_timer = ProveTimer::start();
     let proof = client
-        .prove(&pk, stdin)
+        .prove(&pk, &stdin)
         .run()
         .expect("failed to generate proof");
     println!("Successfully generated proof!");
@@ -111,9 +111,9 @@ fn prove_pgm(client: ProverClient, stdin: SP1Stdin) {
     println!("{}", verify_timer.stop());
 }
 
-fn execute_pgm(client: &ProverClient, stdin: SP1Stdin, target_theorem: Option<u16>, ident_table: mmlib_host::SplitIdentTable) {
+fn execute_pgm(client: &EnvProver, stdin: SP1Stdin, target_theorem: Option<u16>, ident_table: mmlib_host::SplitIdentTable) {
     println!("Executing the program");
-    let (mut output, report) = client.execute(GUEST_ELF, stdin).run().unwrap();
+    let (mut output, report) = client.execute(GUEST_ELF, &stdin).run().unwrap();
     println!("Program executed successfully.");
 
     // Read the output.

@@ -84,7 +84,7 @@ fn check_restored_session(session_file_name: &String, target_theorem: Option<Tok
     let session = exec.run().unwrap();
     println!("Resumed session execution duration: {:.2?}", now.elapsed());
     let now = Instant::now();
-    let prover = get_prover_server(&ProverOpts::default()).unwrap();
+    let prover = get_prover_server(&ProverOpts::succinct()).unwrap();
     let prove_info = prover.prove_session(&VerifierContext::default(), &session).unwrap();
     println!("Resumed session proving duration: {:.2?}", now.elapsed());
     let receipt = prove_info.receipt;
@@ -126,7 +126,7 @@ fn check_proof(max_subst_size: usize, target_theorem: Option<Label>, batches: us
     let env = env.build().unwrap();
 
     // Obtain the default prover.
-    let prover = get_prover_server(&ProverOpts::default()).unwrap();
+    let prover = get_prover_server(&ProverOpts::succinct()).unwrap();
     println!("{}", setup_timer.stop());
 
     println!("Proving file");

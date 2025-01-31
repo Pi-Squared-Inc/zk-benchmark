@@ -6,6 +6,6 @@ name = "mm-sp1-guest"
 edition = "2021"
 
 [dependencies]
-sp1-zkvm = "3.0.0-rc4"
+sp1-zkvm = "4.0.1"
 mmtokens = { path = "../../common/mmtokens" }
 mmlib = { path = "../../common/mmlib", default-features = false, features = ['use_hints'] }
